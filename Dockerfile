@@ -1,7 +1,7 @@
 ARG CI_REGISTRY_IMAGE
 ARG DAVFS2_VERSION
-FROM ${CI_REGISTRY_IMAGE}/<base-image:version>
-LABEL maintainer="<maintainer@example.com>"
+FROM ${CI_REGISTRY_IMAGE}/nc-webdav:${DAVFS2_VERSION}
+LABEL maintainer="<manik.bhattacharjee@univ-grenoble-alpes.fr>"
 
 ARG DEBIAN_FRONTEND=noninteractive
 ARG CARD
@@ -15,17 +15,22 @@ WORKDIR /apps/${APP_NAME}
 
 RUN apt-get update && \
     apt-get upgrade -y && \
-    apt-get install --no-install-recommends -y \ 
-    curl <app> && \
+    apt-get install --no-install-recommends -y curl && \
+    curl -sLO https://surfer.nmr.mgh.harvard.edu/pub/dist/freesurfer/${APP_VERSION}/freesurfer_${APP_VERSION}_amd64.deb && \
+    apt-get install--no-install-recommends -y  ./freesurfer_${APP_VERSION}_amd64.deb && \
+    rm -f ./freesurfer_${APP_VERSION}_amd64.deb && \
+    echo "export FREESURFER_HOME=/usr/local/freesurfer/${APP_VERSION}" >> $HOME/.bashrc && \
+    echo "export FS_LICENSE=$HOME/license.txt" >> $HOME/.bashrc && \
+    echo "source $FREESURFER_HOME/SetUpFreeSurfer.sh" >> $HOME/.bashrc && \
     apt-get remove -y --purge curl && \
     apt-get autoremove -y --purge && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-ENV APP_SHELL="<no>"
-ENV APP_CMD="</path/to/app/executable>"
-ENV PROCESS_NAME="<app_process_name>"
-ENV DIR_ARRAY="<app_files .app_config>"
+ENV APP_SHELL="yes"
+ENV APP_CMD=""
+ENV PROCESS_NAME="recon-all"
+ENV DIR_ARRAY="/usr/local/freesurfer/${APP_VERSION}/subjects"
 
 HEALTHCHECK --interval=10s --timeout=10s --retries=5 --start-period=30s \
   CMD sh -c "/apps/${APP_NAME}/scripts/process-healthcheck.sh \
