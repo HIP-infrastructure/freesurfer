@@ -3,6 +3,10 @@
 
 APP_VERSION=$(ls /usr/local/freesurfer/)
 
+# Load the app specific .env file
+[[ -s "$HOME/.env" ]] && source "$HOME/.env"
+echo -e $FREESURFER_LICENSE > $HOME/license.txt
+
 export FREESURFER_HOME=/usr/local/freesurfer/${APP_VERSION}
 export FS_LICENSE=$HOME/license.txt
 source $FREESURFER_HOME/SetUpFreeSurfer.sh
