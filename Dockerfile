@@ -15,10 +15,15 @@ WORKDIR /apps/${APP_NAME}
 
 RUN apt-get update && \
     apt-get upgrade -y && \
-    apt-get install --no-install-recommends -y curl && \
-    curl -sLO https://surfer.nmr.mgh.harvard.edu/pub/dist/freesurfer/${APP_VERSION}/freesurfer_${APP_VERSION}_amd64.deb && \
-    apt-get install--no-install-recommends -y  ./freesurfer_${APP_VERSION}_amd64.deb && \
-    rm -f ./freesurfer_${APP_VERSION}_amd64.deb && \
+    apt-get install --no-install-recommends -y \
+    curl language-pack-en binutils libx11-dev gettext \
+    xterm x11-apps perl make csh tcsh file bc xorg \
+    xorg-dev xserver-xorg-video-intel libncurses5 \
+    libgomp1  libice6 libjpeg62 libsm6 \
+    libxft2 libxmu6 libxt6 && \
+    curl -O https://surfer.nmr.mgh.harvard.edu/pub/dist/freesurfer/${APP_VERSION}/freesurfer_${APP_VERSION}_amd64.deb && \
+    dpkg -i freesurfer_${APP_VERSION}_amd64.deb && \
+    rm freesurfer_${APP_VERSION}_amd64.deb && \
     apt-get remove -y --purge curl && \
     apt-get autoremove -y --purge && \
     apt-get clean && \
