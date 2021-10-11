@@ -36,5 +36,6 @@ HEALTHCHECK --interval=10s --timeout=10s --retries=5 --start-period=30s \
 
 COPY ./scripts/ scripts/
 COPY ./apps/${APP_NAME}/config config/
+COPY ./apps/${APP_NAME}/license.txt /usr/local/freesurfer/${APP_VERSION}/
 
 ENTRYPOINT ["./scripts/docker-entrypoint.sh"]
