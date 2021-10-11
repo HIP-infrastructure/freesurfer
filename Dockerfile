@@ -1,7 +1,7 @@
 ARG CI_REGISTRY_IMAGE
 ARG DAVFS2_VERSION
 FROM ${CI_REGISTRY_IMAGE}/nc-webdav:${DAVFS2_VERSION}
-LABEL maintainer="<manik.bhattacharjee@univ-grenoble-alpes.fr>"
+LABEL maintainer="manik.bhattacharjee@univ-grenoble-alpes.fr"
 
 ARG DEBIAN_FRONTEND=noninteractive
 ARG CARD
