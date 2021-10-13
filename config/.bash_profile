@@ -10,6 +10,9 @@ echo -e $FREESURFER_LICENSE > $HOME/license.txt
 export FREESURFER_HOME=/usr/local/freesurfer/${APP_VERSION}
 export FS_LICENSE=$HOME/license.txt
 source $FREESURFER_HOME/SetUpFreeSurfer.sh
+mkdir -p $HOME/freesurfer_subjects
+export SUBJECTS_DIR=$HOME/freesurfer_subjects
+
 
 # Load the default .profile
 [[ -s "$HOME/.profile" ]] && source "$HOME/.profile"
