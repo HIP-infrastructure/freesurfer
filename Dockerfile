@@ -21,7 +21,7 @@ RUN apt-get update && \
     xorg-dev xserver-xorg-video-intel libncurses5 \
     libgomp1  libice6 libjpeg62 libsm6 \
     libxft2 libxmu6 libxt6 && \
-    curl -O https://surfer.nmr.mgh.harvard.edu/pub/dist/freesurfer/${APP_VERSION}/freesurfer_${APP_VERSION}_amd64.deb && \
+    curl -O# https://surfer.nmr.mgh.harvard.edu/pub/dist/freesurfer/${APP_VERSION}/freesurfer_${APP_VERSION}_amd64.deb && \
     dpkg -i freesurfer_${APP_VERSION}_amd64.deb && \
     rm freesurfer_${APP_VERSION}_amd64.deb && \
     apt-get remove -y --purge curl && \
@@ -29,11 +29,11 @@ RUN apt-get update && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-ENV APP_SHELL="yes"
+ENV APP_SPECIAL="terminal"
 ENV APP_CMD=""
 ENV PROCESS_NAME=""
 ENV APP_DATA_DIR_ARRAY=""
-ENV DATA_DIR_ARRAY="freesurfer_subjects"
+ENV DATA_DIR_ARRAY=""
 ENV CONFIG_ARRAY=".bash_profile"
 
 HEALTHCHECK --interval=10s --timeout=10s --retries=5 --start-period=30s \
