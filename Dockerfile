@@ -24,7 +24,7 @@ RUN apt-get update && \
     xorg-dev xserver-xorg-video-intel libncurses5 \
     libgomp1  libice6 libjpeg62 libsm6 \
     libxft2 libxmu6 libxt6 && \
-    curl -O# https://surfer.nmr.mgh.harvard.edu/pub/dist/freesurfer/${APP_VERSION}/freesurfer_${APP_VERSION}_amd64.deb && \
+    curl -sSO https://surfer.nmr.mgh.harvard.edu/pub/dist/freesurfer/${APP_VERSION}/freesurfer_${APP_VERSION}_amd64.deb && \
     dpkg -i freesurfer_${APP_VERSION}_amd64.deb && \
     rm freesurfer_${APP_VERSION}_amd64.deb && \
     apt-get remove -y --purge curl && \
