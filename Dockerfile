@@ -22,11 +22,13 @@ RUN apt-get update && \
     curl language-pack-en binutils libx11-dev gettext \
     xterm x11-apps perl make csh tcsh file bc xorg \
     xorg-dev xserver-xorg-video-intel libncurses5 \
-    libgomp1  libice6 libjpeg62 libsm6 \
-    libxft2 libxmu6 libxt6 && \
-    curl -sSO https://surfer.nmr.mgh.harvard.edu/pub/dist/freesurfer/${APP_VERSION}/freesurfer_${APP_VERSION}_amd64.deb && \
-    dpkg -i freesurfer_${APP_VERSION}_amd64.deb && \
-    rm freesurfer_${APP_VERSION}_amd64.deb && \
+    libgomp1  libice6 libjpeg62 libsm6 libxft2 \
+    libxmu6 libxt6 libquadmath0 libwayland-cursor0 \
+    libxcb-icccm4 libxcb-randr0 libxcb-render-util0 \
+    libxcb-render0 libxcb-xinerama0 libxcb-xinput0 && \
+    curl -sSO https://surfer.nmr.mgh.harvard.edu/pub/dist/freesurfer/${APP_VERSION}/freesurfer_ubuntu20-${APP_VERSION}_amd64.deb && \
+    dpkg -i freesurfer_ubuntu20-${APP_VERSION}_amd64.deb && \
+    rm freesurfer_ubuntu20-${APP_VERSION}_amd64.deb && \
     apt-get remove -y --purge curl && \
     apt-get autoremove -y --purge && \
     apt-get clean && \
