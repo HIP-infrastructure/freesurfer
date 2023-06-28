@@ -26,9 +26,9 @@ RUN apt-get update && \
     libxmu6 libxt6 libquadmath0 libwayland-cursor0 \
     libxcb-icccm4 libxcb-randr0 libxcb-render-util0 \
     libxcb-render0 libxcb-xinerama0 libxcb-xinput0 && \
-    curl -sSO https://surfer.nmr.mgh.harvard.edu/pub/dist/freesurfer/${APP_VERSION}/freesurfer_ubuntu20-${APP_VERSION}_amd64.deb && \
-    dpkg -i freesurfer_ubuntu20-${APP_VERSION}_amd64.deb && \
-    rm freesurfer_ubuntu20-${APP_VERSION}_amd64.deb && \
+    curl -sSO https://surfer.nmr.mgh.harvard.edu/pub/dist/freesurfer/${APP_VERSION}/freesurfer_ubuntu22-${APP_VERSION}_amd64.deb && \
+    dpkg -i freesurfer_ubuntu22-${APP_VERSION}_amd64.deb && \
+    rm freesurfer_ubuntu22-${APP_VERSION}_amd64.deb && \
     apt-get remove -y --purge curl && \
     apt-get autoremove -y --purge && \
     apt-get clean && \
