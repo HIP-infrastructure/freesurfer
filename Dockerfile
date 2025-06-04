@@ -3,7 +3,7 @@ ARG TAG
 ARG DOCKERFS_TYPE
 ARG DOCKERFS_VERSION
 FROM ${CI_REGISTRY_IMAGE}/${DOCKERFS_TYPE}:${DOCKERFS_VERSION}${TAG}
-LABEL maintainer="manik.bhattacharjee@univ-grenoble-alpes.fr"
+LABEL maintainer="florian.sipp@chuv.ch"
 
 ARG DEBIAN_FRONTEND=noninteractive
 ARG CARD
@@ -19,13 +19,14 @@ WORKDIR /apps/${APP_NAME}
 RUN apt-get update && \
     apt-get upgrade -y && \
     apt-get install --no-install-recommends -y \
-    curl language-pack-en binutils libx11-dev gettext \
-    xterm x11-apps perl make csh tcsh file bc xorg \
-    xorg-dev xserver-xorg-video-intel libncurses5 \
-    libgomp1  libice6 libjpeg62 libsm6 libxft2 \
-    libxmu6 libxt6 libquadmath0 libwayland-cursor0 \
-    libxcb-icccm4 libxcb-randr0 libxcb-render-util0 \
-    libxcb-render0 libxcb-xinerama0 libxcb-xinput0 && \
+    curl language-pack-en binutils \
+    libx11-dev gettext xterm x11-apps perl \
+    make csh tcsh file bc xorg xorg-dev \
+    xserver-xorg-video-intel libncurses5 \
+    libgomp1 libjpeg62 libpcre2-16-0 libquadmath0 \
+    libxcb-icccm4 libxcb-render-util0 libxcb-render0 \
+    libxcb-shape0 libxcb-xinerama0 libxcb-xinput0 \
+    libxft2 libxi6 libxrender1 libxss1 && \
     curl -sSO https://surfer.nmr.mgh.harvard.edu/pub/dist/freesurfer/${APP_VERSION}/freesurfer_ubuntu22-${APP_VERSION}_amd64.deb && \
     dpkg -i freesurfer_ubuntu22-${APP_VERSION}_amd64.deb && \
     rm freesurfer_ubuntu22-${APP_VERSION}_amd64.deb && \
